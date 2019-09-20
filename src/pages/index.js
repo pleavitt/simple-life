@@ -1,21 +1,52 @@
 import React from "react"
 import { Link } from "gatsby"
-
+import EllipsisText from "react-ellipsis-text";
 import Layout from "../components/layout"
-import Image from "../components/image"
+import Img from "gatsby-image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
+const IndexPage = ({ data: {allMarkdownRemark: { edges: posts }}}) => {
+  console.log('data is:', posts)
+  return (<Layout>
     <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+    {posts.map(post => {
+      const {date, comments, featuredImage, title, path} = post.node.frontmatter;
+      return (
+      <div className="main-post">
+        <Img fluid={featuredImage.childImageSharp.fluid} />
+        <div className="date-comments">{`${date} | ${comments} comments`}</div>
+        <Link to={path} className="read-more" ><h1>{title}</h1></Link>
+        <p className="preview"><EllipsisText text={post.node.htmlAst.children[2].children[0].value} length={150} /></p>
+        <Link to={path} className="read-more" >continue reading</Link>
+      </div>
+      )
+    })}
+  </Layout>);
+}
+
+export const pageQuery = graphql`
+query MyQuery {
+  allMarkdownRemark {
+    edges {
+      node {
+        frontmatter {
+          title
+          path
+          comments
+          date(formatString: "MMMM DD, YYYY")
+          featuredImage {
+            childImageSharp {
+              fluid(maxWidth: 800) {
+                ...GatsbyImageSharpFluid
+              }
+            }
+          }
+        }
+        htmlAst
+      }
+    }
+  }
+}
+`
 
 export default IndexPage
