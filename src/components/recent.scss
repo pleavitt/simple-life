@@ -1,0 +1,31 @@
+.recent-container {
+  border: 20px solid #EBEBEB;
+  padding: 1em;
+  margin: 1em; 
+  
+  h1 {
+    font-size: 1.125rem;
+    color: #143774;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-family: 'Ubuntu', sans-serif;
+  }
+  
+  .recent {
+
+    .title-image {
+      width: 420px;
+      height: 87px;
+    }
+
+    a {
+      text-decoration: none;
+      h2 {
+        font-size: 1.125rem;
+        color: #143774;
+        font-family: 'Lora', sans-serif;
+        font-weight: normal;
+      }
+    }  
+  }
+}

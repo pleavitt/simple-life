@@ -7,9 +7,8 @@ import Img from "gatsby-image"
 export default function Template({
   data, // this prop will be injected by the GraphQL query below.
 }) {
-  console.log('data', data)
   const { markdownRemark } = data // data.markdownRemark holds our post data
-  const { frontmatter, html } = markdownRemark
+  const { html } = markdownRemark
   return (
     <Layout>
       <div className="blog-post-container">
