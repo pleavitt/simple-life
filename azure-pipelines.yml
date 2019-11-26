@@ -21,13 +21,12 @@ steps:
   displayName: 'npm install and build'
   
 - task: CopyFiles@2
-    inputs:
-      sourceFolder: '$(System.DefaultWorkingDirectory)'
-      contents: |
-        public/**/*
-      targetFolder: '$(Build.ArtifactStagingDirectory)'
-      overWrite: true
-    displayName: 'Copying built static files'
+  inputs:
+    sourceFolder: '$(System.DefaultWorkingDirectory)'
+    contents: '**' 
+    targetFolder: $(Build.ArtifactStagingDirectory)
+    cleanTargetFolder: true 
+  displayName: 'copy built site'
 
 # - task: PublishBuildArtifacts@1
 #   inputs:
