@@ -28,8 +28,21 @@ steps:
     cleanTargetFolder: true 
   displayName: 'copy built site'
 
-- task: PublishBuildArtifacts@1
+# - task: PublishBuildArtifacts@1
+#   inputs:
+#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+#     artifactName: 'drop' 
+#     publishLocation: 'Container'
+
+# - task: AzureFileCopy@3
+#   inputs:
+#     sourcePath: '$(Build.ArtifactStagingDirectory)'
+
+- task: AzureFileCopy@2
+  displayName: 'AzureBlob File Copy'
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
-    publishLocation: 'Container'
+    SourcePath: '$(Build.ArtifactStagingDirectory)'
+    azureSubscription: 'Visual Studio Enterprise – MPN'
+    Destination: azureBlob
+    storage: simplelifestorage
+    ContainerName: '$web'
