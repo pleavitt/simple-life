@@ -40,7 +40,7 @@ steps:
 
 - task: AzureFileCopy@3
   inputs:
-    SourcePath: '''$(Build.ArtifactStagingDirectory)'''
+    SourcePath: '$(Build.ArtifactStagingDirectory)'
     azureSubscription: 'Pleavitt MSDN(f75ee177-28bf-41b9-9e3e-8855bac93f17)'
     Destination: 'AzureBlob'
     storage: 'simplelifestorage'
