@@ -22,8 +22,7 @@ steps:
   
 - task: CopyFiles@2
   inputs:
-    sourceFolder: '$(System.DefaultWorkingDirectory)'
-    contents: 'public/**/*' 
+    contents: 'public/**' 
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true 
   displayName: 'copy built site'
@@ -31,12 +30,8 @@ steps:
 - task: PublishBuildArtifacts@1
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-    artifactName: 'drop' 
-    publishLocation: 'Container'
-
-# - task: AzureFileCopy@3
-#   inputs:
-#     sourcePath: '$(Build.ArtifactStagingDirectory)'
+    artifactName: 'build' 
+  displayName: ' Publish Artifacts'
 
 - task: AzureFileCopy@3
   inputs:
@@ -45,4 +40,6 @@ steps:
     Destination: 'AzureBlob'
     storage: 'simplelifestorage'
     ContainerName: '$web'
+  displayName: 'Copy to Azure'
+
 
