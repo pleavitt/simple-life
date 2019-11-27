@@ -38,11 +38,11 @@ steps:
 #   inputs:
 #     sourcePath: '$(Build.ArtifactStagingDirectory)'
 
-- task: AzureFileCopy@2
+- task: AzureFileCopy@3
   displayName: 'AzureBlob File Copy'
   inputs:
     SourcePath: '$(Build.ArtifactStagingDirectory)'
-    azureSubscription: 'Pleavitt MSDN'
-    Destination: azureBlob
+    azureSubscription: 'Pleavitt MSDN(f75ee177-28bf-41b9-9e3e-8855bac93f17)'
+    Destination: 'AzureBlob'
     storage: simplelifestorage
     ContainerName: '$web'
