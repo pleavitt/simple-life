@@ -28,21 +28,20 @@ steps:
     cleanTargetFolder: true 
   displayName: 'copy built site'
 
-# - task: PublishBuildArtifacts@1
-#   inputs:
-#     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-#     artifactName: 'drop' 
-#     publishLocation: 'Container'
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    artifactName: 'drop' 
+    publishLocation: 'Container'
 
 # - task: AzureFileCopy@3
 #   inputs:
 #     sourcePath: '$(Build.ArtifactStagingDirectory)'
 
 - task: AzureFileCopy@3
-  displayName: 'AzureBlob File Copy'
   inputs:
-    SourcePath: '$(Build.ArtifactStagingDirectory)'
-    azureSubscription: 'Pleavitt MSDN(f75ee177-28bf-41b9-9e3e-8855bac93f17)'
+    SourcePath: '''$(Build.ArtifactStagingDirectory)'''
+    azureSubscription: 'Pleavitt MSDN(1)(f75ee177-28bf-41b9-9e3e-8855bac93f17)'
     Destination: 'AzureBlob'
-    storage: simplelifestorage
+    storage: 'simplelifestorage'
     ContainerName: '$web'
