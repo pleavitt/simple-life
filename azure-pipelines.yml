@@ -6,6 +6,9 @@
 trigger:
 - master
 
+variables:
+  npm_config_cache: $(Pipeline.Workspace)/.npm
+
 pool:
   vmImage: 'windows-latest'
 
@@ -14,11 +17,21 @@ steps:
   inputs:
     versionSpec: '10.x'
   displayName: 'Install Node.js'
-  
-- task: Npm@1
+
+- task: Cache@2
   inputs:
-    command: 'install'
-  displayName: 'npm install'
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    restoreKeys: |
+       npm | "$(Agent.OS)"
+       npm
+    path: $(npm_config_cache)
+    cacheHitVar: CACHE_RESTORED
+  displayName: Cache npm
+
+# - task: Npm@1
+#   inputs:
+#     command: 'install'
+#   displayName: 'npm install'
 
 - task: Npm@1
   inputs:
@@ -36,13 +49,13 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
+    pathtoPublish: '$(Build.ArtifactStagingDirectory)'
     artifactName: 'build' 
   displayName: ' Publish Artifacts'
 
 - task: AzureFileCopy@3
   inputs:
-    SourcePath: '$(Build.ArtifactStagingDirectory)'
+    SourcePath: '$(Build.ArtifactStagingDirectory)/public'
     azureSubscription: 'Pleavitt MSDN(f75ee177-28bf-41b9-9e3e-8855bac93f17)'
     Destination: 'AzureBlob'
     storage: 'simplelifestorage'
