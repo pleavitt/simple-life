@@ -29,14 +29,15 @@ steps:
     cacheHitVar: 'CACHE_RESTORED'
   displayName: Cache Yarn packages
 
-- script: yarn --frozen-lockfilea
+- script: yarn --frozen-lockfile
+  condition: ne(variables.CACHE_RESTORED, 'true')
+  displayName: Yarn
 
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run build'
   displayName: 'build'
-
 
 - task: CopyFiles@2
   inputs:
