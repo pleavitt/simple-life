@@ -29,22 +29,7 @@ steps:
     cacheHitVar: 'CACHE_RESTORED'
   displayName: Cache Yarn packages
 
-- script: yarn --frozen-lockfile
-
-- task: Cache@2
-  inputs:
-    key: 'npm | "$(Agent.OS)" | package-lock.json'
-    restoreKeys: |
-       npm | "$(Agent.OS)"
-       npm
-    path: $(npm_config_cache)
-  displayName: Cache npm
-
-- task: Npm@1
-  condition: ne(variables.CACHE_RESTORED, 'true')
-  inputs:
-    command: 'install'
-  displayName: 'npm install'
+- script: yarn --frozen-lockfilea
 
 - task: Npm@1
   inputs:
