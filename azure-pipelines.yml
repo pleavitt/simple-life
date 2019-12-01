@@ -21,30 +21,38 @@ steps:
 
 - task: Cache@2
   inputs:
-    key: 'yarn | "$(Agent.OS)" | yarn.lock'
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
     restoreKeys: |
-       yarn | "$(Agent.OS)"
-       yarn
-    path: $(YARN_CACHE_FOLDER)
+       npm | "$(Agent.OS)"
+       npm
+    path: $(npm_config_cache)
     cacheHitVar: 'CACHE_RESTORED'
-  displayName: Cache Yarn packages
+  displayName: Cache npm
 
-- script: yarn --frozen-lockfile
+- task: Npm@1
+  condition: eq(variables.CACHE_RESTORED, 'true')
+  inputs:
+    command: 'install -g gatsby-cli'
+  displayName: 'NPM install gatsby'
+
+- task: Npm@1
   condition: ne(variables.CACHE_RESTORED, 'true')
-  displayName: Yarn
+  inputs:
+    command: 'install'
+  displayName: 'NPM install'
 
 - task: Npm@1
   inputs:
     command: 'custom'
     customCommand: 'run build'
-  displayName: 'build'
+  displayName: 'Build'
 
 - task: CopyFiles@2
   inputs:
     contents: 'public/**' 
     targetFolder: $(Build.ArtifactStagingDirectory)
     cleanTargetFolder: true 
-  displayName: 'copy built site'
+  displayName: 'Copy built site'
 
 - task: PublishBuildArtifacts@1
   inputs:
