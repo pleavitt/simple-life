@@ -30,7 +30,7 @@ steps:
   displayName: Cache npm
 
 - script: npm install -g gatsby-cli
-  condition: eq(variables.CACHE_RESTORED, 'true'
+  condition: eq(variables.CACHE_RESTORED, 'true')
   displayName: 'NPM install gatsby'
 
 - task: Npm@1
