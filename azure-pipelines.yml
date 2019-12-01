@@ -29,7 +29,7 @@ steps:
     cacheHitVar: 'CACHE_RESTORED'
   displayName: Cache npm
 
-- script: npm install -g gatsby-cli
+- script: npm install gatsby-cli
   condition: eq(variables.CACHE_RESTORED, 'true')
   displayName: 'NPM install gatsby'
 
