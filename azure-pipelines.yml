@@ -20,10 +20,13 @@ steps:
 
 - task: Cache@2
   inputs:
-    key: 'my_key | $(Build.SourcesDirectory)/package-lock.json'
-    path: '$(npm_config_cache)'
+    key: 'npm | "$(Agent.OS)" | package-lock.json'
+    restoreKeys: |
+       npm | "$(Agent.OS)"
+       npm
+    path: $(npm_config_cache)
     cacheHitVar: 'CACHE_RESTORED'
-  displayName: Cache npm dependencies
+  displayName: Cache npm
 
 - task: Npm@1
   condition: ne(variables.CACHE_RESTORED, 'true')
