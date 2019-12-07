@@ -6,7 +6,7 @@
 
 // You can delete this file if you're not using it
 import "./src/styles/global.scss"
-//import "./src/styles/debug.scss"
+// import "./src/styles/debug.scss"
 
 require('typeface-lora')
 require('typeface-ubuntu')
