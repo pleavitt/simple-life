@@ -8,7 +8,7 @@
   The Simple Life
 </h1>
 
-This project is part of a css course
+This uses uses markdown to generate its blog post content
 
 ## 🚀 Demo
 
