@@ -4,6 +4,19 @@ import { Link } from "gatsby"
 import { StaticQuery, graphql } from "gatsby"
 import "./recent.scss";
 
+
+const PreviewPost = ({ featuredImage, title, path, key }) => {
+  return (
+    <div key={key} className="recent">
+      <Img className="title-image" fluid={featuredImage.childImageSharp.fluid} />
+      <Link to={path}>
+        <h2>{title}</h2>
+      </Link>
+  </div>
+)
+}
+
+
 const Recent = () => (
   <StaticQuery
     query={graphql`
@@ -32,15 +45,7 @@ const Recent = () => (
       return (
         <div className="recent-container">
           <h1>Recent Posts</h1>
-          {posts.map(post => {
-            const { featuredImage, title, path } = post.node.frontmatter;
-            return (
-              <div className="recent">
-                <Img className="title-image" fluid={featuredImage.childImageSharp.fluid} />
-                <Link to={path}><h2>{title}</h2></Link>
-              </div>
-            );
-          })}
+          {posts.map((post, key) => <PreviewPost key={key} {...post.node.frontmatter}  />)}
         </div>
       );
     }}

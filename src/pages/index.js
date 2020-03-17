@@ -7,9 +7,9 @@ import SEO from "../components/seo"
 
 const IndexPage = ({ data: {allMarkdownRemark: { edges: posts }}}) => (<Layout>
   <SEO title="Home" />
-  {posts.map(post => {
+  {posts.map((post, key) => {
     const { date, comments, featuredImage, title, path } = post.node.frontmatter;
-    return (<div className="main-post">
+    return (<div key={key} className="main-post">
       <Img fluid={featuredImage.childImageSharp.fluid} />
       <div className="date-comments">{`${date} | ${comments} comments`}</div>
       <Link to={path} className="read-more"><h1>{title}</h1></Link>
