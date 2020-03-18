@@ -1,8 +1,12 @@
 header{
-    body {
-        margin: 0;
-        font-family: 'Ubuntu', sans-serif;
-    }
+  text-align: center;
+  padding: 2em 0;
+  background-color: #f8f8f8;
+
+  body {
+      margin: 0;
+      font-family: 'Ubuntu', sans-serif;
+  }
   
   .container {
     width: 90%;
@@ -19,9 +23,6 @@ header{
     text-align: center;
   }
   header {
-    text-align: center;
-    padding: 2em 0;
-    background: #f8f8f8;
   }
   
   nav {
@@ -40,7 +41,7 @@ header{
   .subtitle > p {
     margin: 0 auto 0;
     font-family: 'Ubuntu', sans-serif;
-    font-size: 1rem;
+    font-size: .75rem;
     color: #1792D2;
     text-transform: uppercase;
     letter-spacing: 0px;
