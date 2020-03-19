@@ -63,10 +63,10 @@ const IndexPage = ({ data: { allMarkdownRemark: { edges: posts } } }) => (
 
 export const pageQuery = graphql`
 query MyQuery {
-  allMarkdownRemark {
+  allMarkdownRemark(filter: {frontmatter: {path: {regex: "/blog/"}}}) {
     edges {
       node {
-        frontmatter {
+        frontmatter  {
           title
           path
           comments

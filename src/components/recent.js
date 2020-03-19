@@ -21,7 +21,7 @@ const Recent = () => (
   <StaticQuery
     query={graphql`
       query RecentQuery {
-        allMarkdownRemark {
+        allMarkdownRemark(filter: {frontmatter: {path: {regex: "/blog/"}}}) {
           edges {
             node {
               frontmatter {

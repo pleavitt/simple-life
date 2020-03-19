@@ -9,32 +9,40 @@ article {
     padding-bottom: 2em;
     margin-bottom: 2em;
 
-  }
+}
 
+.recent-post {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.read-more {
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: bold;
+  color: #1792D2;
+}
+
+.date-comments {
+  font-size: .875rem
+}
+
+@media (min-width: 650px) {
   .recent-post {
-    display: flex;
-    flex-direction: column;
-  }
+      display: flex;
+      flex-direction: row;
+      justify-content: space-evenly;
 
-
-  .read-more {
-    text-decoration: none;
-    font-size: 14px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #1792D2;
-  }
-  
-  .date-comments {
-    font-size: .875rem
-  }
-
-  @media (min-width: 650px) {
-    .recent-post {
-        display: flex;
-        flex-direction: row;
+      .content {
+        width: 68%;
       }
-        
-  }
+
+      .image-meta {
+        width: 30%;
+      }
+    }
   
+}
