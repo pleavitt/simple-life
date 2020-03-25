@@ -5,6 +5,7 @@ import Img from "gatsby-image"
 import SEO from "../components/seo"
 import Recent from "../components/recent";
 import "./index.scss";
+import About from "../components/about-preview"
 
 const HeadlinePost = ({ date, comments, featuredImage, title, path, key, text }) => {
   const preview = text.length > 250 ? `${text.substring(0, 250)}...` : text;
@@ -57,7 +58,10 @@ const IndexPage = ({ data: { allMarkdownRemark: { edges: posts } } }) => (
     return <RecentPost key={key} text={post.node.htmlAst.children[2].children[0].value} {...post.node.frontmatter}/>
   })}
   </div>
-  <Recent />
+  <div className="sidebar">
+    <About />
+    <Recent />
+  </div>
   </Layout>
 )
 

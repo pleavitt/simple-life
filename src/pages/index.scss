@@ -16,6 +16,15 @@ article {
   flex-direction: column;
 }
 
+.posts {
+  flex: 3;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
 
 .read-more {
   text-decoration: none;
